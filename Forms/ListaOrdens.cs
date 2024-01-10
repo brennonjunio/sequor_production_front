@@ -1,7 +1,17 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml.Linq;
+using Microsoft.VisualBasic.ApplicationServices;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using sequorTesteSelecao.Models;
-
 
 namespace sequorTesteSelecao.Forms
 {
@@ -9,6 +19,7 @@ namespace sequorTesteSelecao.Forms
     {
         private readonly HttpClient httpClient = new HttpClient();
         private readonly string apiUrl = "https://localhost:7067/api/Orders/GetOrders";
+
         public ListaOrdens()
         {
             InitializeComponent();
@@ -21,14 +32,10 @@ namespace sequorTesteSelecao.Forms
             this.Hide();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
 
         private async void button2_Click(object sender, EventArgs e)
         {
-
             var listarOrder = await GetOrder();
 
             dataGridViewOrderns.DataSource = listarOrder;
@@ -36,12 +43,15 @@ namespace sequorTesteSelecao.Forms
             configureGrade();
         }
 
-
         private void configureGrade()
         {
             dataGridViewOrderns.ForeColor = Color.Black;
 
-            dataGridViewOrderns.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 9, FontStyle.Bold);
+            dataGridViewOrderns.ColumnHeadersDefaultCellStyle.Font = new Font(
+                "Arial",
+                9,
+                FontStyle.Bold
+            );
             dataGridViewOrderns.RowHeadersWidth = 25;
 
             dataGridViewOrderns.Columns["order"].HeaderText = "Id da Ordem";
@@ -51,8 +61,26 @@ namespace sequorTesteSelecao.Forms
             dataGridViewOrderns.Columns["image"].HeaderText = "Imagem";
             dataGridViewOrderns.Columns["cycleTime"].HeaderText = "Ciclo";
 
-        }
+            // Adicionar uma coluna para exibir os materiais
+            DataGridViewTextBoxColumn materialsColumn = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Materiais",
+                Name = "materials",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+            };
+            dataGridViewOrderns.Columns.Add(materialsColumn);
 
+            // Preencher os dados da grade
+            foreach (DataGridViewRow row in dataGridViewOrderns.Rows)
+            {
+                OrderModel order = (OrderModel)row.DataBoundItem;
+                string materialsString = string.Join(
+                    ", ",
+                    order.Materials.Select(m => $"{m.MaterialCode}: {m.MaterialDescription}  ")
+                );
+                row.Cells["materials"].Value = materialsString;
+            }
+        }
 
         public async Task<List<OrderModel>> GetOrder()
         {
@@ -61,13 +89,14 @@ namespace sequorTesteSelecao.Forms
             string responseBody = await response.Content.ReadAsStringAsync();
             JObject jsonResponse = JObject.Parse(responseBody);
 
-
             if (jsonResponse.TryGetValue("orders", out JToken dataToken))
             {
                 if (dataToken != null)
                 {
-                    List<OrderModel> order = JsonConvert.DeserializeObject<List<OrderModel>>(dataToken.ToString());
-                    return order;
+                    List<OrderModel> orders = JsonConvert.DeserializeObject<List<OrderModel>>(
+                        dataToken.ToString()
+                    );
+                    return orders;
                 }
                 else
                 {
@@ -82,24 +111,29 @@ namespace sequorTesteSelecao.Forms
             }
         }
 
-        private void BtnProducao_Click(object sender, EventArgs e)
+        private async void btnConsultar_Click(object sender, EventArgs e)
         {
-            if (dataGridViewOrderns.Rows.Count > 0 && dataGridViewOrderns.SelectedRows.Count > 0)
+            if (dataGridViewOrderns.Rows.Count > 0)
             {
-                // Obter os valores da linha selecionada
+                var id = Convert.ToString(dataGridViewOrderns.CurrentRow.Cells["order"].Value);
 
-                DataGridViewRow selectedRow = dataGridViewOrderns.SelectedRows[0];
-                string order = selectedRow.Cells["order"].Value.ToString();
-                string quantity = selectedRow.Cells["quantity"].Value.ToString();
-
-                // Criar uma instância da RequestProduction com os valores obtidos
-                RequestProduction requestProd = new RequestProduction(order, quantity);
-                requestProd.ShowDialog();
+                if (id != null)
+                {
+                    ModalOrdens modalOrdens = new ModalOrdens(id);
+                    modalOrdens.ShowDialog();
+                }
             }
             else
             {
-                MessageBox.Show("Primeiro Selecione uma Ordem", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "Primeiro Selecione uma Ordem",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
         }
+
+        private void catchData() { }
     }
 }

@@ -20,4 +20,5 @@ C:\Users\brennon\Documents\c#\sequor_form\obj\Debug\net6.0-windows\sequorTesteSe
 C:\Users\brennon\Documents\c#\sequor_form\obj\Debug\net6.0-windows\sequorTesteSelecao.Forms.ListaProducoes.resources
 C:\Users\brennon\Documents\c#\sequor_form\obj\Debug\net6.0-windows\sequorTesteSelecao.Forms.Login.resources
 C:\Users\brennon\Documents\c#\sequor_form\obj\Debug\net6.0-windows\sequorTesteSelecao.Main.resources
-C:\Users\brennon\Documents\c#\sequor_form\obj\Debug\net6.0-windows\sequorTesteSelecao.Forms.RequestProduction.resources
+C:\Users\brennon\Documents\c#\sequor_form\obj\Debug\net6.0-windows\sequor_form.sourcelink.json
+C:\Users\brennon\Documents\c#\sequor_form\obj\Debug\net6.0-windows\sequorTesteSelecao.Forms.ModalOrdens.resources

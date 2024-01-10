@@ -8,20 +8,26 @@ namespace sequorTesteSelecao.Models
 {
     public class OrderModel
     {
-        public string order { get; set; }
-        public double quantity { get; set; }  
-        public string productCode { get; set; }
-        public string productDescription { get; set; }
-        public string image { get; set; }
-        public double cycleTime { get; set; }  
-        public Material[] materials { get; set; }
+        public string Order { get; set; }
+        public double Quantity { get; set; }
+        public string ProductCode { get; set; }
+        public string ProductDescription { get; set; }
+        public string Image { get; set; }
+        public double CycleTime { get; set; }
+        public List<MaterialModel> Materials { get; set; }
     }
 
-    public class Material
+    public class MaterialModel
     {
-        public string materialCode { get; set; }
-        public string materialDescription { get; set; }
+        public string MaterialCode { get; set; }
+        public string MaterialDescription { get; set; }
     }
 
-
+    public class ApiResponse
+    {
+        public int Status { get; set; }
+        public string Type { get; set; }
+        public string Description { get; set; }
+        public List<OrderModel> Orders { get; set; }
+    }
 }
