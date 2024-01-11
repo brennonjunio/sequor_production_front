@@ -1,5 +1,5 @@
-﻿using System.Text;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
+using System.Text;
 using Timer = System.Windows.Forms.Timer;
 
 namespace sequorTesteSelecao.Forms
@@ -51,6 +51,8 @@ namespace sequorTesteSelecao.Forms
             string description = ObterDescricaoDaResposta(resposta);
 
             MessageBox.Show($"{description}");
+            this.Hide();
+
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -83,15 +85,37 @@ namespace sequorTesteSelecao.Forms
             {
                 textBoxQuantidade.Text = ordemFiltrada.Quantity.ToString();
                 textBoxOrdemId.Text = ordemFiltrada.Order.ToString();
-                textBoxCodigoMaterial.Text = ordemFiltrada.Materials.ToString();
 
-                string materiaisString = string.Join(
-                    ", ",
-                    ordemFiltrada.Materials.Select(
-                        m => $"{m.MaterialCode}: {m.MaterialDescription}"
-                    )
-                );
-                textBoxCodigoMaterial.Text = materiaisString;
+                // Limpa os itens existentes no CheckedListBox
+                checkedMaterials.Items.Clear();
+
+                // Adiciona os materiais ao CheckedListBox
+                foreach (var material in ordemFiltrada.Materials)
+                {
+                    // Adiciona o item exibido no CheckedListBox
+                    checkedMaterials.Items.Add(
+                        $"{material.MaterialDescription} ({material.MaterialCode})",
+                        CheckState.Unchecked
+                    );
+                }
+
+                // Evento para tratar a mudança de seleção no CheckedListBox
+                checkedMaterials.SelectedIndexChanged += (sender, e) =>
+                {
+                    // Verifica se algum item está selecionado
+                    if (checkedMaterials.SelectedIndex != -1)
+                    {
+                        // Obtém o código do material a partir da descrição
+                        string selectedMaterial = checkedMaterials.SelectedItem.ToString();
+                        string codigoMaterial = selectedMaterial.Substring(
+                            selectedMaterial.LastIndexOf("(") + 1,
+                            selectedMaterial.Length - selectedMaterial.LastIndexOf("(") - 2
+                        );
+
+                        // Preenche o textBoxCodigoMaterial com o código do material selecionado
+                        textBoxCodigoMaterial.Text = codigoMaterial;
+                    }
+                };
             }
             else
             {
@@ -157,9 +181,6 @@ namespace sequorTesteSelecao.Forms
             this.Hide();
         }
 
-        private void textBoxCodigoMaterial_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void textBoxCodigoMaterial_TextChanged(object sender, EventArgs e) { }
     }
 }

@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Forms",
+    "\\Models"
   ],
-  "SelectedNode": "\\sequor_form.sln",
+  "SelectedNode": "\\Forms\\RequestProduction.Designer.cs",
   "PreviewInSolutionExplorer": true
 }

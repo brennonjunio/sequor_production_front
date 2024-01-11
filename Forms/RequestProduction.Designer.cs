@@ -43,6 +43,7 @@
             button1 = new Button();
             button2 = new Button();
             labelTempo = new Label();
+            checkedMaterials = new CheckedListBox();
             SuspendLayout();
             // 
             // label1
@@ -64,7 +65,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(230, 38);
+            label2.Location = new Point(234, 134);
             label2.Name = "label2";
             label2.Size = new Size(47, 15);
             label2.TabIndex = 2;
@@ -73,7 +74,7 @@
             // 
             // textBoxOrdemId
             // 
-            textBoxOrdemId.Location = new Point(230, 67);
+            textBoxOrdemId.Location = new Point(234, 163);
             textBoxOrdemId.Name = "textBoxOrdemId";
             textBoxOrdemId.Size = new Size(146, 23);
             textBoxOrdemId.TabIndex = 3;
@@ -81,7 +82,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(401, 38);
+            label3.Location = new Point(234, 38);
             label3.Name = "label3";
             label3.Size = new Size(104, 15);
             label3.TabIndex = 4;
@@ -90,7 +91,7 @@
             // 
             // textBoxDataProducao
             // 
-            textBoxDataProducao.Location = new Point(401, 67);
+            textBoxDataProducao.Location = new Point(234, 67);
             textBoxDataProducao.Name = "textBoxDataProducao";
             textBoxDataProducao.Size = new Size(146, 23);
             textBoxDataProducao.TabIndex = 5;
@@ -98,7 +99,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(591, 42);
+            label4.Location = new Point(468, 42);
             label4.Name = "label4";
             label4.Size = new Size(67, 15);
             label4.TabIndex = 6;
@@ -106,7 +107,7 @@
             // 
             // textBoxTempoProducao
             // 
-            textBoxTempoProducao.Location = new Point(591, 67);
+            textBoxTempoProducao.Location = new Point(468, 67);
             textBoxTempoProducao.Name = "textBoxTempoProducao";
             textBoxTempoProducao.Size = new Size(146, 23);
             textBoxTempoProducao.TabIndex = 7;
@@ -130,7 +131,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(234, 132);
+            label6.Location = new Point(472, 246);
             label6.Name = "label6";
             label6.Size = new Size(112, 15);
             label6.TabIndex = 10;
@@ -138,17 +139,17 @@
             // 
             // textBoxCodigoMaterial
             // 
-            textBoxCodigoMaterial.Location = new Point(230, 164);
+            textBoxCodigoMaterial.Location = new Point(468, 278);
             textBoxCodigoMaterial.Name = "textBoxCodigoMaterial";
-            textBoxCodigoMaterial.Size = new Size(142, 23);
+            textBoxCodigoMaterial.Size = new Size(146, 23);
             textBoxCodigoMaterial.TabIndex = 11;
             textBoxCodigoMaterial.TextChanged += textBoxCodigoMaterial_TextChanged;
             // 
             // button1
             // 
-            button1.Location = new Point(703, 405);
+            button1.Location = new Point(642, 397);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(146, 44);
             button1.TabIndex = 14;
             button1.Text = "Salvar";
             button1.UseVisualStyleBackColor = true;
@@ -156,9 +157,9 @@
             // 
             // button2
             // 
-            button2.Location = new Point(608, 405);
+            button2.Location = new Point(468, 397);
             button2.Name = "button2";
-            button2.Size = new Size(75, 23);
+            button2.Size = new Size(146, 44);
             button2.TabIndex = 15;
             button2.Text = "Cancelar";
             button2.UseVisualStyleBackColor = true;
@@ -172,12 +173,21 @@
             labelTempo.Size = new Size(0, 15);
             labelTempo.TabIndex = 17;
             // 
+            // checkedMaterials
+            // 
+            checkedMaterials.FormattingEnabled = true;
+            checkedMaterials.Location = new Point(468, 132);
+            checkedMaterials.Name = "checkedMaterials";
+            checkedMaterials.Size = new Size(146, 94);
+            checkedMaterials.TabIndex = 18;
+            // 
             // ModalOrdens
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(800, 450);
+            Controls.Add(checkedMaterials);
             Controls.Add(labelTempo);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -217,5 +227,6 @@
         private Button button2;
         private Label label8;
         private Label labelTempo;
+        private CheckedListBox checkedMaterials;
     }
 }

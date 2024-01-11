@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("sequor_form")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5668eecf6c9be35c24b903285a602855df7c9b49")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("sequor_form")]
 [assembly: System.Reflection.AssemblyTitleAttribute("sequor_form")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

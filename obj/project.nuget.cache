@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fjYpVgFtV7EWYXUFpccTtctWkZrowhVoB3QlkNF4AuvP27NPbqg9ZbeSTiqF0rKBS+bmUpdIv9QjB6Oje3mzCA==",
+  "dgSpecHash": "ojm6pmD8eriGdFfwYt9mDGqefksvY/Ek0iDKIw3tCGYyvgDPdVvVcQoB8UVCTPZojtoxqvIt4p5Btd4voqXEgg==",
   "success": true,
-  "projectFilePath": "c:\\Users\\brennon\\Documents\\c#\\sequor_form\\sequor_form.csproj",
+  "projectFilePath": "C:\\Users\\brennon\\Documents\\c#\\sequor_form\\sequor_form.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\brennon\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
