@@ -47,11 +47,19 @@ namespace sequorTesteSelecao.Forms
             };
 
             string resposta = await EnviarRequisicaoPost(apiUrl, requestData);
+            Console.WriteLine(resposta);
 
             string description = ObterDescricaoDaResposta(resposta);
 
-            MessageBox.Show($"{description}");
-            this.Hide();
+            if (JObject.Parse(resposta)["type"]?.ToString() == "E")
+            {
+                MessageBox.Show($"{description}");
+            }
+            else
+            {
+                MessageBox.Show($"{description}");
+                this.Hide();
+            }
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -153,14 +161,9 @@ namespace sequorTesteSelecao.Forms
             {
                 JObject jsonResponse = JObject.Parse(response);
 
-                if (jsonResponse.TryGetValue("description", out JToken descriptionToken))
-                {
-                    return (string)descriptionToken;
-                }
-                else
-                {
-                    return "Descrição não encontrada na resposta.";
-                }
+                jsonResponse.TryGetValue("description", out JToken descriptionToken);
+
+                return (string)descriptionToken;
             }
             catch (Exception ex)
             {
