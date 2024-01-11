@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using sequorTesteSelecao.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +8,9 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using sequorTesteSelecao.Models;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace sequorTesteSelecao.Forms
@@ -18,6 +18,7 @@ namespace sequorTesteSelecao.Forms
     public partial class Login : Form
     {
         private readonly HttpClient httpClient = new HttpClient();
+
         public Login()
         {
             InitializeComponent();
@@ -36,27 +37,40 @@ namespace sequorTesteSelecao.Forms
 
                     if (response.IsSuccessStatusCode)
                     {
-                      
                         string responseData = await response.Content.ReadAsStringAsync();
-                        var productionResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<ProductionResponse>(responseData);
+                        var productionResponse =
+                            Newtonsoft.Json.JsonConvert.DeserializeObject<ProductionResponse>(
+                                responseData
+                            );
 
-                  
-                        ListaProducoes listaProducoesForm = new ListaProducoes(productionResponse.Productions);
+                        ListaProducoes listaProducoesForm = new ListaProducoes(
+                            productionResponse.Productions
+                        );
                         listaProducoesForm.Show();
                         this.Hide();
-
                     }
                     else
                     {
                         string errorData = await response.Content.ReadAsStringAsync();
-                        var errorResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(errorData);
+                        var errorResponse =
+                            Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(errorData);
 
-                        MessageBox.Show($"Erro {errorResponse.Status}: {errorResponse.Description}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(
+                            $"Erro {errorResponse.Status}: {errorResponse.Description}",
+                            "Erro",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Erro na requisição: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        $"Erro na requisição: {ex.Message}",
+                        "Erro",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
                 }
             }
         }
@@ -68,14 +82,11 @@ namespace sequorTesteSelecao.Forms
             this.Hide();
         }
 
-
-
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Certifique-se de liberar os recursos do HttpClient quando o formulário for fechado
             httpClient.Dispose();
         }
-
 
         public class ErrorResponse
         {
@@ -100,6 +111,5 @@ namespace sequorTesteSelecao.Forms
             public string MaterialCode { get; set; }
             public double CycleTime { get; set; }
         }
-
     }
 }

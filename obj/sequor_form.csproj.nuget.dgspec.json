@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\brennon\\Documents\\c#\\sequor_form\\sequor_form.csproj": {}
+    "c:\\Users\\brennon\\Documents\\c#\\sequor_form\\sequor_form.csproj": {}
   },
   "projects": {
-    "C:\\Users\\brennon\\Documents\\c#\\sequor_form\\sequor_form.csproj": {
+    "c:\\Users\\brennon\\Documents\\c#\\sequor_form\\sequor_form.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\brennon\\Documents\\c#\\sequor_form\\sequor_form.csproj",
+        "projectUniqueName": "c:\\Users\\brennon\\Documents\\c#\\sequor_form\\sequor_form.csproj",
         "projectName": "sequor_form",
-        "projectPath": "C:\\Users\\brennon\\Documents\\c#\\sequor_form\\sequor_form.csproj",
+        "projectPath": "c:\\Users\\brennon\\Documents\\c#\\sequor_form\\sequor_form.csproj",
         "packagesPath": "C:\\Users\\brennon\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\brennon\\Documents\\c#\\sequor_form\\obj\\",
+        "outputPath": "c:\\Users\\brennon\\Documents\\c#\\sequor_form\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\brennon\\AppData\\Roaming\\NuGet\\NuGet.Config",

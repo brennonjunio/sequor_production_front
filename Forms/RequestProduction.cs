@@ -156,5 +156,10 @@ namespace sequorTesteSelecao.Forms
         {
             this.Hide();
         }
+
+        private void textBoxCodigoMaterial_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
