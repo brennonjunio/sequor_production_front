@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
-using System.Text;
+﻿using System.Text;
+using Newtonsoft.Json.Linq;
 using Timer = System.Windows.Forms.Timer;
 
 namespace sequorTesteSelecao.Forms
@@ -52,7 +52,6 @@ namespace sequorTesteSelecao.Forms
 
             MessageBox.Show($"{description}");
             this.Hide();
-
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -139,14 +138,7 @@ namespace sequorTesteSelecao.Forms
 
                     HttpResponseMessage response = await httpClient.PostAsync(apiUrl, content);
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        return await response.Content.ReadAsStringAsync();
-                    }
-                    else
-                    {
-                        return await response.Content.ReadAsStringAsync();
-                    }
+                    return await response.Content.ReadAsStringAsync();
                 }
             }
             catch (Exception ex)
