@@ -101,19 +101,26 @@ namespace sequorTesteSelecao.Forms
                 {
                     // Adiciona o item exibido no CheckedListBox
                     checkedMaterials.Items.Add(
-                        $"{material.MaterialDescription} ({material.MaterialCode})",
-                        CheckState.Unchecked
+                        $"{material.MaterialDescription} ({material.MaterialCode})"
                     );
                 }
 
                 // Evento para tratar a mudança de seleção no CheckedListBox
-                checkedMaterials.SelectedIndexChanged += (sender, e) =>
+                checkedMaterials.ItemCheck += (sender, e) =>
                 {
-                    // Verifica se algum item está selecionado
-                    if (checkedMaterials.SelectedIndex != -1)
+                    // Desativa todos os outros itens
+                    for (int i = 0; i < checkedMaterials.Items.Count; i++)
                     {
-                        // Obtém o código do material a partir da descrição
-                        string selectedMaterial = checkedMaterials.SelectedItem.ToString();
+                        if (i != e.Index)
+                        {
+                            checkedMaterials.SetItemChecked(i, false);
+                        }
+                    }
+
+                    // Preenche o textBoxCodigoMaterial com o código do material selecionado
+                    if (e.NewValue == CheckState.Checked)
+                    {
+                        string selectedMaterial = checkedMaterials.Items[e.Index].ToString();
                         string codigoMaterial = selectedMaterial.Substring(
                             selectedMaterial.LastIndexOf("(") + 1,
                             selectedMaterial.Length - selectedMaterial.LastIndexOf("(") - 2
@@ -121,6 +128,11 @@ namespace sequorTesteSelecao.Forms
 
                         // Preenche o textBoxCodigoMaterial com o código do material selecionado
                         textBoxCodigoMaterial.Text = codigoMaterial;
+                    }
+                    else
+                    {
+                        // Se desmarcar, limpa o textBoxCodigoMaterial
+                        textBoxCodigoMaterial.Text = string.Empty;
                     }
                 };
             }
